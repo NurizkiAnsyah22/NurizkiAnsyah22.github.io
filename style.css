@@ -1,0 +1,145 @@
+html {
+
+    position: relative;
+
+}
+
+body {
+    margin-bottom: 100px;
+    margin-top: 20px;
+}
+
+.jumbotron {
+    height: 520px;
+    background-image: url(../portofolio/asset/img/bg-jumbroton.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 0 -300px;
+    color: #eaeaea;
+    overflow: hidden;
+    transition: background-size 0.3s ease-in-out; /* Tambahkan transition */
+}
+
+.jumbotron.zoomed {
+    background-size: 110% auto; /* Tambahkan zoom level */
+}
+
+#profile-img {
+    transition: all 0.3s ease;
+  }
+  
+  .shrink-img {
+    transform: scale(0.5);
+  }
+  
+
+
+.jumbotron img {
+    width: 200px;
+    height: 200px;
+    margin-top: 40px;
+border: 5px solid #eaeaea ;
+box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+.jumbotron h1, .jumbotron p {
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+    margin-top: 40px;
+}
+
+.typing-text {
+    overflow: hidden;
+    border-right: 0.15em solid orange; /* Ganti warna dengan warna yang diinginkan */
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 1s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange; /* Ganti warna dengan warna yang diinginkan */
+    }
+  }
+  
+
+
+ hr {
+    width: 250px;
+    border-top: 3px solid darkred;
+}
+
+section {
+    min-height: 300px;
+}
+
+.pkiri, .pkanan {
+    opacity: 0;
+    transform: translate(-50px, 0) rotate(20deg);
+    transition: 1s;
+}
+
+.pkanan {
+    transform: translate(50px, 0) rotate(25deg);
+}
+
+.pkiri.pmuncul, .pkanan.pmuncul {
+    opacity: 1;
+    transform: translate(0,0);
+
+}
+
+
+.portofolio {
+    background-color:#eee;
+}
+
+.portofolio .thumbnail {
+    opacity: 0;
+    transform: translate(0, -40px);
+    transition: .5s;
+    
+}
+
+.portofolio .thumbnail.muncul {
+    opacity: 1;
+    transform: translate(0,0);
+}
+
+.contact {
+    min-height: 800px;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 70px;
+    background-color: darkslategrey;
+    padding-top: 20px;
+}
+footer p {
+    color: blanchedalmond;
+
+
+}
+footer p i {
+    color: greenyellow;
+}
+
+/* navbar */
+.language-slide {
+    padding-top: 15px;
+}

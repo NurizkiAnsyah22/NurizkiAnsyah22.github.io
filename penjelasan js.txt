@@ -1,0 +1,86 @@
+JavaScript:
+// Event pada saat link di klik
+$('.page-scroll').on('click', function (e) {
+    var tujuan = $(this).attr('href'); // Mendapatkan nilai atribut "href" dari elemen yang diklik
+    var elementTujuan = $(tujuan); // Mendapatkan elemen tujuan berdasarkan nilai "href"
+
+    // Pindahkan scroll
+    $('html, body').animate({
+        scrollTop: elementTujuan.offset().top - 50 // Mengatur posisi scroll halaman ke elemen tujuan dengan pengurangan 50px dari offset atas elemen
+    }, 1300, 'easeInOutCubic'); // Mengatur animasi scroll dengan durasi 1300ms dan efek perpindahan "easeInOutCubic"
+
+    e.preventDefault(); // Mencegah tindakan bawaan dari link tersebut
+});
+
+Penjelasan: Menggunakan event handler untuk menangani klik pada elemen dengan kelas "page-scroll". Ketika diklik, kita mendapatkan atribut "href" dari elemen tersebut dan mencari elemen dengan ID yang sesuai dengan nilai "href" tersebut. Setelah itu, kita menggunakan animasi untuk menggerakkan scroll halaman ke posisi elemen tujuan dengan efek durasi 1300ms dan gaya perpindahan "easeInOutCubic". Menggunakan "e.preventDefault()" untuk mencegah tindakan bawaan dari link tersebut.
+
+// Efek ketik pada teks "Nurizkiansyah" dan "Web Developer | Software Engineer"
+$(document).ready(function() {
+    var h1Element = $('.jumbotron h1'); // Mengambil elemen h1 di dalam jumbotron
+    var pElement = $('.jumbotron p'); // Mengambil elemen p di dalam jumbotron
+
+    h1Element.hide(); // Menyembunyikan elemen h1
+    pElement.hide(); // Menyembunyikan elemen p
+
+    setTimeout(function() {
+        h1Element.show().addClass('typing'); // Menampilkan elemen h1 dan menambahkan kelas "typing"
+        typeEffect(h1Element, h1Element.text(), 0); // Memanggil fungsi typeEffect dengan elemen h1 sebagai parameter
+    }, 1000); // Menunda selama 1000ms (1 detik) sebelum menjalankan aksi berikutnya
+
+    setTimeout(function() {
+        pElement.show().addClass('typing'); // Menampilkan elemen p dan menambahkan kelas "typing"
+        typeEffect(pElement, pElement.text(), 0); // Memanggil fungsi typeEffect dengan elemen p sebagai parameter
+    }, 1500); // Menunda selama 1500ms (1.5 detik) sebelum menjalankan aksi berikutnya
+
+    function typeEffect(element, text, index) {
+        if (index < text.length) {
+            element.text(text.slice(0, index + 1)); // Mengatur teks elemen dengan potongan teks dari awal hingga indeks saat ini
+            index++; // Menambahkan nilai indeks
+            setTimeout(function() {
+                typeEffect(element, text, index); // Memanggil rekursif fungsi typeEffect dengan nilai indeks yang baru
+            }, 100); // Menunda selama 100ms (0.1 detik) sebelum menambahkan karakter berikutnya
+        } else {
+            element.removeClass('typing'); // Menghapus kelas "typing" setelah selesai mengetik
+        }
+    }
+});
+
+// Untuk menyimpan parallax
+
+
+$(window).scroll(function() {
+    var wScroll = $(this).scrollTop(); // Mendapatkan nilai scroll vertikal dari jendela
+
+    $('.jumbotron img').css({
+        'transform': 'translate(0px, ' + wScroll/3 + '%)'
+    });
+
+    $('.jumbotron h1').css({
+        'transform': 'translate(0px, ' + wScroll/2 + '%)'
+    });
+
+    $('.jumbotron p').css({
+        'transform': 'translate(0px, ' + wScroll/1.5 + '%)'
+    });
+
+    // Menambahkan efek zoom saat melakukan scroll
+    if (wScroll > 0) {
+        $('.jumbotron').addClass('zoomed');
+    } else {
+        $('.jumbotron').removeClass('zoomed');
+    }
+});
+
+// Mengatur nilai background-size secara bertahap saat melakukan scroll
+var scrollTimeout;
+$(window).scroll(function() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
+        var wScroll = $(window).scrollTop(); // Mendapatkan nilai scroll vertikal dari jendela
+        var zoomLevel = wScroll / 1000 + 1; // Sesuaikan angka 200 dengan kecepatan zoom yang diinginkan
+
+        $('.jumbotron').css({
+            'background-size': zoomLevel * 100 + '% auto'
+        });
+    }, 20); // Menunda selama 20ms (0.02 detik) sebelum melakukan refresh dan mengatur ulang ukuran latar belakang
+});
